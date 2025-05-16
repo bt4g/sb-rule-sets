@@ -19,7 +19,13 @@
     "rules": [
       {
         "rule_set": [
-          "ru-bundle"
+          "geosite-whatsapp", "geosite-telegram", "geoip-telegram"
+        ],
+        "server": "dns-local"
+      },
+      {
+        "rule_set": [
+          "geosite-tiktok", "ru-bundle", "discord-voice-ip-list", "viber_aws_ip"
         ],
         "server": "dns-remote"
       }
@@ -48,6 +54,13 @@
       "type": "selector",
       "tag": "default",
       "outbounds": [
+        "⚡️ Auto", "\u003call-proxy-tags\u003e"
+      ]
+    },
+        {
+      "tag": "⚡️ Auto",
+      "type": "urltest",
+      "outbounds": [
         "\u003call-proxy-tags\u003e"
       ]
     }
@@ -71,17 +84,59 @@
       },
       {
         "rule_set": [
-          "ru-bundle"
+          "geosite-whatsapp", "geosite-telegram", "geoip-telegram"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "geosite-tiktok", "ru-bundle", "discord-voice-ip-list", "viber_aws_ip"
         ],
         "outbound": "default"
       }
     ],
     "rule_set": [
       {
+        "tag": "geosite-tiktok",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/tiktok.srs",
+        "type": "remote",
+        "format": "binary"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-whatsapp",
+        "format": "binary",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/whatsapp.srs"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-telegram",
+        "format": "binary",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/telegram.srs"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-telegram",
+        "format": "binary",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/telegram.srs"
+      },
+      {
         "type": "remote",
         "tag": "ru-bundle",
         "format": "binary",
         "url": "https://github.com/legiz-ru/sb-rule-sets/raw/main/ru-bundle.srs"
+      },
+      {
+        "type": "remote",
+        "tag": "discord-voice-ip-list",
+        "format": "binary",
+        "url": "https://github.com/legiz-ru/sb-rule-sets/raw/main/discord-voice-ip-list.srs"
+      },
+      {
+        "type": "remote",
+        "tag": "viber_aws_ip",
+        "format": "binary",
+        "url": "https://github.com/legiz-ru/sb-rule-sets/raw/main/viber_aws_ip.srs"
       }
     ],
     "auto_detect_interface": true,
